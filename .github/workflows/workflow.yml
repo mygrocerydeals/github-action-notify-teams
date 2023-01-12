@@ -45,4 +45,4 @@ jobs:
         node-version: 16
     - run: npx semantic-release@v19
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
