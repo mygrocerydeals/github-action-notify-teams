@@ -7,7 +7,7 @@ This action can be invoked as follows:
 
 ```
   notify-teams:
-    uses: pol-onesource/github-action-notify-teams@<version>
+    uses: chrisdleech-pol/github-action-notify-teams@<version>
     with:
       TEAMS_URI: <URI of Microsoft Teams incoming webhook>
       TEAMS_MSG_TITLE: <title of the message>
