@@ -1,0 +1,31 @@
+name: 'Microsoft Teams Notify Channel'
+branding :
+    icon : 'send'
+    color : 'gray-dark'
+description: 'A custom GitHub Action with publishes a message card to a Microsoft Teams channel via an incoming webhook connector'
+inputs:
+  TEAMS_URI:
+    description: 'Microsoft Teams WebHook URI'
+    required: true
+  TEAMS_MSG_TITLE:
+    description: 'Microsoft Teams Message Title'
+    required: true
+  TEAMS_MSG_SUMMARY:
+    description: 'Microsoft Teams Message Summary'
+    required: true
+  TEAMS_MSG_TYPE: 
+    description: 'Microst Teams Message Type'
+    required: true
+  GITHUB_RUN_URL: 
+    description: 'URL of associated run action'
+    required: false
+    default: "https://github.com/${{github.repository}}/commit/${{github.sha}}/checks/${{github.run_id}}"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.TEAMS_URI }}
+    - ${{ inputs.TEAMS_MSG_TITLE }}
+    - ${{ inputs.TEAMS_MSG_SUMMARY }}
+    - ${{ inputs.TEAMS_MSG_TYPE }}
+    - ${{ inputs.GITHUB_RUN_URL }}

@@ -1,0 +1,47 @@
+name: 'Test and Release'
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  python-lint:
+    name: "Python Lint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install checks
+        run: pip install pylint black
+      - name: Black Formatter
+        working-directory: "/src"
+        run: |
+          black --check .
+      - name: pip install requirements
+        working-directory: "."
+        run: |
+          pip install -r requirements.txt
+      - name: Pylint
+        working-directory: "/src"
+        run: |
+          find . -type f -name "*.py" | xargs pylint
+  release:
+    name: 'Semantic Release'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: npx semantic-release@v19
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
