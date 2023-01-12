@@ -31,18 +31,3 @@ jobs:
         working-directory: "./src"
         run: |
           find . -type f -name "*.py" | xargs pylint
-  release:
-    needs: [ python-lint ]
-    name: 'Semantic Release'
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - run: npx semantic-release@v19
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
