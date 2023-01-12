@@ -32,6 +32,7 @@ jobs:
         run: |
           find . -type f -name "*.py" | xargs pylint
   release:
+    needs: [ python-lint ]
     name: 'Semantic Release'
     runs-on: ubuntu-latest
     steps:
