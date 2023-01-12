@@ -20,7 +20,7 @@ jobs:
       - name: Install checks
         run: pip install pylint black
       - name: Black Formatter
-        working-directory: "/src"
+        working-directory: "./src"
         run: |
           black --check .
       - name: pip install requirements
@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Pylint
-        working-directory: "/src"
+        working-directory: "./src"
         run: |
           find . -type f -name "*.py" | xargs pylint
   release:
