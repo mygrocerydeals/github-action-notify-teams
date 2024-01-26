@@ -7,7 +7,7 @@ This action can be invoked as follows:
 
 ```
   notify-teams:
-    uses: chrisdleech-pol/github-action-notify-teams@<version>
+    uses: mygrocerydeals/github-action-notify-teams@<version>
     with:
       TEAMS_URI: <URI of Microsoft Teams incoming webhook>
       TEAMS_MSG_TITLE: <title of the message>
@@ -19,7 +19,7 @@ For example, an invocation as follows:
 
 ```
   notify-teams:
-    uses: chrisdleech-pol/github-action-notify-teams@<version>
+    uses: mygrocerydeals/github-action-notify-teams@<version>
     with:
       TEAMS_URI: <URI of Microsoft Teams incoming webhook>
       TEAMS_MSG_TITLE: 'A Test Message'
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send Teams Notification
-      uses: chrisdleech-pol/github-action-notify-teams@<version>
+      uses: mygrocerydeals/github-action-notify-teams@<version>
       with: 
         TEAMS_URI: <URI of Microsoft Teams incoming webhook>
         TEAMS_MSG_TITLE: "${{ github.repository }}: ${{ github.workflow }} (${{ github.job }})"
