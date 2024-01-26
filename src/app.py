@@ -1,4 +1,5 @@
 """Send a notification message to Microsoft Teams"""
+
 import os
 import pymsteams
 
